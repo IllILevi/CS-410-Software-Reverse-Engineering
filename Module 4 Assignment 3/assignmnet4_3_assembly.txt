@@ -1,0 +1,109 @@
+assignment4_3.o:     file format elf64-x86-64
+
+
+Contents of section .rodata:
+ 0c30 01000200 00456e74 6572206e 756d6265  .....Enter numbe
+ 0c40 72206f66 20726f77 73002000 2a000a00  r of rows. .*...
+
+
+00000000000009ba <main>:
+ 9ba:	55                   	push   %rbp
+ 9bb:	48 89 e5             	mov    %rsp,%rbp
+ 9be:	48 83 ec 20          	sub    $0x20,%rsp  ; Allocates memory to stack 
+ 9c2:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
+ 9c9:	00 00 
+ 9cb:	48 89 45 f8          	mov    %rax,-0x8(%rbp)
+ 9cf:	31 c0                	xor    %eax,%eax
+ 9d1:	c7 45 f4 01 00 00 00 	movl   $0x1,-0xc(%rbp)
+ 9d8:	48 8d 35 56 02 00 00 	lea    0x256(%rip),%rsi        
+ 9df:	48 8d 3d 3a 16 20 00 	lea    0x20163a(%rip),%rdi        
+ 9e6:	e8 75 fe ff ff       	callq  860 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>  ; Calls function to print "Enter number of rows"
+ 9eb:	48 89 c2             	mov    %rax,%rdx
+ 9ee:	48 8b 05 db 15 20 00 	mov    0x2015db(%rip),%rax        
+ 9f5:	48 89 c6             	mov    %rax,%rsi
+ 9f8:	48 89 d7             	mov    %rdx,%rdi
+ 9fb:	e8 70 fe ff ff       	callq  870 <_ZNSolsEPFRSoS_E@plt>  ; calls function that is equivalent to endl;
+ a00:	48 8d 45 e8          	lea    -0x18(%rbp),%rax
+ a04:	48 89 c6             	mov    %rax,%rsi
+ a07:	48 8d 3d 32 17 20 00 	lea    0x201732(%rip),%rdi        
+ a0e:	e8 2d fe ff ff       	callq  840 <_ZNSirsERi@plt>  ; calls function to take in user input
+ a13:	8b 45 e8             	mov    -0x18(%rbp),%eax   ; moves user input into %eax
+ a16:	83 e8 01             	sub    $0x1,%eax  ; subtracts user input by 1 and stores it back into %eax
+ a19:	89 45 f4             	mov    %eax,-0xc(%rbp)  ; Moves value in %eax into -0xc(%rbp)
+ ; start of first outer for loop
+ a1c:	c7 45 f0 01 00 00 00 	movl   $0x1,-0x10(%rbp)  ; Moves the value of 1 into -0x10(%rbp)
+ a23:	8b 45 e8             	mov    -0x18(%rbp),%eax  ; Moves user input into %eax
+ a26:	39 45 f0             	cmp    %eax,-0x10(%rbp)  ; compares our user input with the value of 1
+ a29:	7f 72                	jg     a9d <main+0xe3>  ; jumps to a9d if 1 is greater than our user input
+ ; Start of first inner for loop of first outer for loop (confusing)
+ a2b:	c7 45 ec 01 00 00 00 	movl   $0x1,-0x14(%rbp)  ; Moves value of 1 into -0x14(%rbp)
+ a32:	8b 45 ec             	mov    -0x14(%rbp),%eax  ; Moves value in -0x14(%rbp) into %eax
+ a35:	3b 45 f4             	cmp    -0xc(%rbp),%eax  ; compares user input minus 1 with 1 (both 1's increase by 1 after each iteration)
+ a38:	7f 19                	jg     a53 <main+0x99>  ; jumps to a53 if current iteration value (1) is greater than user input minus outer loop iteration value (1)
+ a3a:	48 8d 35 09 02 00 00 	lea    0x209(%rip),%rsi      
+ a41:	48 8d 3d d8 15 20 00 	lea    0x2015d8(%rip),%rdi       
+ a48:	e8 13 fe ff ff       	callq  860 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>  ; calls function to print empty string
+ a4d:	83 45 ec 01          	addl   $0x1,-0x14(%rbp)  ; increment first nested loop iteration by 1
+ a51:	eb df                	jmp    a32 <main+0x78>  ; unconditional jump to a32 which is the start of our first nested for loop
+ ; Start of second inner for loop of first outer for loop 
+ a53:	83 6d f4 01          	subl   $0x1,-0xc(%rbp)
+ a57:	c7 45 ec 01 00 00 00 	movl   $0x1,-0x14(%rbp) ; Moves the value of 1 into -0x14(%rbp)
+ a5e:	8b 45 f0             	mov    -0x10(%rbp),%eax  ; moves -0x10(%rbp), which is our outer loop iteration value into %eax
+ a61:	01 c0                	add    %eax,%eax  ; adds itself (i + i or 2 * i)
+ a63:	83 e8 01             	sub    $0x1,%eax  ; subtracts 1 from the result of %eax
+ a66:	39 45 ec             	cmp    %eax,-0x14(%rbp)  ; compares the value of %eax with current second nested loop iteration value (1)
+ a69:	7f 19                	jg     a84 <main+0xca>  ; jumps to a84 if iteration value is greater than the value in %eax
+ a6b:	48 8d 35 da 01 00 00 	lea    0x1da(%rip),%rsi        
+ a72:	48 8d 3d a7 15 20 00 	lea    0x2015a7(%rip),%rdi        
+ a79:	e8 e2 fd ff ff       	callq  860 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>  ; Calls function to print "*"
+ a7e:	83 45 ec 01          	addl   $0x1,-0x14(%rbp)  ; increments the second nested for loop by 1
+ a82:	eb da                	jmp    a5e <main+0xa4>  ; unconditional jump to a5e which is the start of the second nested for loop
+ a84:	48 8d 35 c3 01 00 00 	lea    0x1c3(%rip),%rsi        
+ a8b:	48 8d 3d 8e 15 20 00 	lea    0x20158e(%rip),%rdi       
+ a92:	e8 c9 fd ff ff       	callq  860 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>  ; calls function to print new line
+ a97:	83 45 f0 01          	addl   $0x1,-0x10(%rbp)  ; increments first outer for loop by 1
+ a9b:	eb 86                	jmp    a23 <main+0x69>  ; unconditional jump to a23, which is the start of the first outer for loop
+ ; Start of second outer for loop
+ a9d:	c7 45 f4 01 00 00 00 	movl   $0x1,-0xc(%rbp)  ; Moves the value of 1 into -0xc(%rbp)
+ aa4:	c7 45 f0 01 00 00 00 	movl   $0x1,-0x10(%rbp) ; Moves the value of 1 into -0x10(%rbp)
+ aab:	8b 45 e8             	mov    -0x18(%rbp),%eax  ; Moves user input into %eax
+ aae:	83 e8 01             	sub    $0x1,%eax  ; Subtract 1 from the value in %eax
+ ab1:	39 45 f0             	cmp    %eax,-0x10(%rbp)  ; compares the value in %eax with the value in -0x10(%rbp)
+ ab4:	7f 75                	jg     b2b <main+0x171>  ; Jumps to b2b if user input minus 1 is greater than value in -0x10(%rbp)
+ ; Start of first inner loop of second outer loop
+ ab6:	c7 45 ec 01 00 00 00 	movl   $0x1,-0x14(%rbp)  ; Moves the value of 1 into -0x14(%rbp)
+ abd:	8b 45 ec             	mov    -0x14(%rbp),%eax  ; Moves value in -0x14(%rbp) into %eax
+ ac0:	3b 45 f4             	cmp    -0xc(%rbp),%eax  ; Compares second outer loop iteration value with current first inner loop iteration value
+ ac3:	7f 19                	jg     ade <main+0x124> ; Jumps to ade if -0xc(%rbp) is greater than %eax
+ ac5:	48 8d 35 7e 01 00 00 	lea    0x17e(%rip),%rsi        
+ acc:	48 8d 3d 4d 15 20 00 	lea    0x20154d(%rip),%rdi        
+ ad3:	e8 88 fd ff ff       	callq  860 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>  ; Calls function to print empty string
+ ad8:	83 45 ec 01          	addl   $0x1,-0x14(%rbp)  ; Increments first inner loop of second outer loop by 1
+ adc:	eb df                	jmp    abd <main+0x103>  ; Unconditional jump to abd, which is the start of loop
+ ade:	83 45 f4 01          	addl   $0x1,-0xc(%rbp)
+ ; Start of second inner for loop in second outer for loop
+ ae2:	c7 45 ec 01 00 00 00 	movl   $0x1,-0x14(%rbp)  ; Moves the value of 1 into -0x14(%rbp)
+ ae9:	8b 45 e8             	mov    -0x18(%rbp),%eax  ; Moves user input into %eax
+ aec:	2b 45 f0             	sub    -0x10(%rbp),%eax  ; Subtracting the value in -0x10(%rbp) with user input
+ aef:	01 c0                	add    %eax,%eax  ; adds itself (i + i or 2 * i)
+ af1:	83 e8 01             	sub    $0x1,%eax  ; Subtracts the result by 1
+ af4:	39 45 ec             	cmp    %eax,-0x14(%rbp)  ; compares the result of %eax with the value in -0x14(%rbp)
+ af7:	7f 19                	jg     b12 <main+0x158>  ; jumps to b12 if %eax is greater than -0x14(%rbp)
+ af9:	48 8d 35 4c 01 00 00 	lea    0x14c(%rip),%rsi        
+ b00:	48 8d 3d 19 15 20 00 	lea    0x201519(%rip),%rdi        
+ b07:	e8 54 fd ff ff       	callq  860 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>  ; Calls function to print "*"
+ b0c:	83 45 ec 01          	addl   $0x1,-0x14(%rbp)  ; increments second inner loop in second outer loop
+ b10:	eb d7                	jmp    ae9 <main+0x12f>  ; jumps to ae9 which is the start of this for loop
+ b12:	48 8d 35 35 01 00 00 	lea    0x135(%rip),%rsi        
+ b19:	48 8d 3d 00 15 20 00 	lea    0x201500(%rip),%rdi        
+ b20:	e8 3b fd ff ff       	callq  860 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>  ; call function to print new line
+ b25:	83 45 f0 01          	addl   $0x1,-0x10(%rbp)  ; increment outer loop by 1
+ b29:	eb 80                	jmp    aab <main+0xf1>  ; unconditional jump to aab, which is the start of the second outer for loop
+ b2b:	b8 01 00 00 00       	mov    $0x1,%eax
+ b30:	48 8b 4d f8          	mov    -0x8(%rbp),%rcx
+ b34:	64 48 33 0c 25 28 00 	xor    %fs:0x28,%rcx
+ b3b:	00 00 
+ b3d:	74 05                	je     b44 <main+0x18a>
+ b3f:	e8 3c fd ff ff       	callq  880 <__stack_chk_fail@plt>
+ b44:	c9                   	leaveq 
+ b45:	c3                   	retq   
