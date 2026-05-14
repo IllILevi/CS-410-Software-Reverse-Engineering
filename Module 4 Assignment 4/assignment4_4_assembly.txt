@@ -1,0 +1,96 @@
+assignment4_4:     file format elf64-x86-64
+
+
+Contents of section .rodata:
+ 0c20 01000200 00000000 00456e74 65722074  .........Enter t
+ 0c30 68652062 696e6172 79206e75 6d626572  he binary number
+ 0c40 3a200000 00000000 0a457175 6976616c  : .......Equival
+ 0c50 656e7420 68657861 64656369 6d616c20  ent hexadecimal 
+ 0c60 76616c75 653a2000                    value: .
+
+
+00000000000009fa <main>:
+ 9fa:	55                   	push   %rbp
+ 9fb:	48 89 e5             	mov    %rsp,%rbp
+ 9fe:	48 83 ec 30          	sub    $0x30,%rsp  ; Allocates memory in the stack
+ a02:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
+ a09:	00 00 
+ a0b:	48 89 45 f8          	mov    %rax,-0x8(%rbp)
+ a0f:	31 c0                	xor    %eax,%eax  ; Clears the register
+ a11:	48 c7 45 e0 00 00 00 	movq   $0x0,-0x20(%rbp)
+ a18:	00 
+ a19:	48 c7 45 e8 01 00 00 	movq   $0x1,-0x18(%rbp)
+ a20:	00 
+ a21:	48 8d 35 01 02 00 00 	lea    0x201(%rip),%rsi        
+ a28:	48 8d 3d f1 15 20 00 	lea    0x2015f1(%rip),%rdi        
+ a2f:	e8 5c fe ff ff       	callq  890 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>  Calls function to print the string "Enter the binary number:"
+ a34:	48 89 c2             	mov    %rax,%rdx
+ a37:	48 8b 05 92 15 20 00 	mov    0x201592(%rip),%rax        
+ a3e:	48 89 c6             	mov    %rax,%rsi
+ a41:	48 89 d7             	mov    %rdx,%rdi
+ a44:	e8 57 fe ff ff       	callq  8a0 <_ZNSolsEPFRSoS_E@plt>  ; calls function to print new line
+ a49:	48 8d 45 d8          	lea    -0x28(%rbp),%rax
+ a4d:	48 89 c6             	mov    %rax,%rsi
+ a50:	48 8d 3d e9 16 20 00 	lea    0x2016e9(%rip),%rdi       
+ a57:	e8 14 fe ff ff       	callq  870 <_ZNSirsERl@plt>  ; call function to take in user input
+ a5c:	48 8b 45 d8          	mov    -0x28(%rbp),%rax  ; move user input into %rax
+ a60:	48 85 c0             	test   %rax,%rax  ; Tests if value in %rax is 0
+ a63:	0f 84 83 00 00 00    	je     aec <main+0xf2>  ; jumps to aec if it is equal to 0
+ a69:	48 8b 4d d8          	mov    -0x28(%rbp),%rcx  ; if not 0, then move value into %rcx
+ a6d:	48 ba 67 66 66 66 66 	movabs $0x6666666666666667,%rdx  ; Moves 64-bit constant into %rdx
+ a74:	66 66 66 
+ a77:	48 89 c8             	mov    %rcx,%rax  ; move value in %rcx into %rax
+ a7a:	48 f7 ea             	imul   %rdx  ; multiply value in %rdx by the value in %rax %rdx holds the high 64-bit and %rax holds the low 64-bit
+ a7d:	48 c1 fa 02          	sar    $0x2,%rdx  ; Perform arithmetic shift to the right by 2 on %rdx
+ a81:	48 89 c8             	mov    %rcx,%rax  ; move orginal value of %rcx into %rax
+ a84:	48 c1 f8 3f          	sar    $0x3f,%rax  ; Performs an arithmetic shift right by 63 bits on %rax (0x3f in hex is 63 in decimal)
+ a88:	48 29 c2             	sub    %rax,%rdx  ; subtract %rax with %rdx
+ a8b:	48 89 d0             	mov    %rdx,%rax  ; move %rdx into %rax
+ a8e:	48 89 45 f0          	mov    %rax,-0x10(%rbp)  ; move %rax into -0x10(%rbp)
+ a92:	48 8b 55 f0          	mov    -0x10(%rbp),%rdx  ; move -0x10(%rbp) into %rdx
+ a96:	48 89 d0             	mov    %rdx,%rax
+ a99:	48 c1 e0 02          	shl    $0x2,%rax  ; shift left by 2 on %rax
+ a9d:	48 01 d0             	add    %rdx,%rax  ; adds %rdx with %rax
+ aa0:	48 01 c0             	add    %rax,%rax  ; adds %rax with itself
+ aa3:	48 29 c1             	sub    %rax,%rcx  ; finds the remainder
+ aa6:	48 89 c8             	mov    %rcx,%rax  ; moves remainder into %rcx
+ aa9:	48 89 45 f0          	mov    %rax,-0x10(%rbp)  ; moves remainder into -0x10(%rbp)
+ aad:	48 8b 45 f0          	mov    -0x10(%rbp),%rax
+ ab1:	48 0f af 45 e8       	imul   -0x18(%rbp),%rax  ; multiply 1 by the value in %rax
+ ab6:	48 01 45 e0          	add    %rax,-0x20(%rbp)  ; adds the value in %rax with the value in -0x20(%rbp)
+ aba:	48 d1 65 e8          	shlq   -0x18(%rbp)  ; doubles the multiplier
+ abe:	48 8b 4d d8          	mov    -0x28(%rbp),%rcx
+ ac2:	48 ba 67 66 66 66 66 	movabs $0x6666666666666667,%rdx
+ ac9:	66 66 66 
+ acc:	48 89 c8             	mov    %rcx,%rax  ; move value in %rcx into %rax
+ acf:	48 f7 ea             	imul   %rdx    ; multiply value in %rdx by the value in %rax %rdx holds the high 64-bit and %rax holds the low 64-bit
+ ad2:	48 c1 fa 02          	sar    $0x2,%rdx  ; Perform arithmetic shift to the right by 2 on %rdx
+ ad6:	48 89 c8             	mov    %rcx,%rax  ; move orginal value of %rcx into %rax
+ ad9:	48 c1 f8 3f          	sar    $0x3f,%rax  ; Performs an arithmetic shift right by 63 bits on %rax (0x3f in hex is 63 in decimal)
+ add:	48 29 c2             	sub    %rax,%rdx  ; subtract %rax with %rdx
+ ae0:	48 89 d0             	mov    %rdx,%rax  ; move %rdx into %rax
+ ae3:	48 89 45 d8          	mov    %rax,-0x28(%rbp)  ; move %rax into -0x10(%rbp)
+ ae7:	e9 70 ff ff ff       	jmpq   a5c <main+0x62>  ; unconditional jump to a5c which is the start of the loop
+ aec:	48 8d 35 55 01 00 00 	lea    0x155(%rip),%rsi        
+ af3:	48 8d 3d 26 15 20 00 	lea    0x201526(%rip),%rdi       
+ afa:	e8 91 fd ff ff       	callq  890 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc@plt>  ; prints string "Equivalent hexadecimal value: "
+ aff:	48 89 c2             	mov    %rax,%rdx
+ b02:	48 8b 45 e0          	mov    -0x20(%rbp),%rax
+ b06:	48 89 c6             	mov    %rax,%rsi
+ b09:	48 89 d7             	mov    %rdx,%rdi
+ b0c:	e8 bf fd ff ff       	callq  8d0 <_ZNSolsEl@plt>  ; prints hexadecimal value
+ b11:	48 89 c2             	mov    %rax,%rdx
+ b14:	48 8b 05 b5 14 20 00 	mov    0x2014b5(%rip),%rax        
+ b1b:	48 89 c6             	mov    %rax,%rsi
+ b1e:	48 89 d7             	mov    %rdx,%rdi
+ b21:	e8 7a fd ff ff       	callq  8a0 <_ZNSolsEPFRSoS_E@plt>  ; prints new line
+ b26:	b8 00 00 00 00       	mov    $0x0,%eax
+ b2b:	48 8b 75 f8          	mov    -0x8(%rbp),%rsi
+ b2f:	64 48 33 34 25 28 00 	xor    %fs:0x28,%rsi
+ b36:	00 00 
+ b38:	74 05                	je     b3f <main+0x145>
+ b3a:	e8 71 fd ff ff       	callq  8b0 <__stack_chk_fail@plt>
+ b3f:	c9                   	leaveq 
+ b40:	c3                   	retq
+
+
