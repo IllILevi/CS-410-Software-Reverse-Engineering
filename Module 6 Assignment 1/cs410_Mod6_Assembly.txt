@@ -1,0 +1,209 @@
+assignment6_1:     file format elf64-x86-64
+
+
+Contents of section .rodata:
+ 0e00 01000200 002d2d2d 2d2d2d2d 2d2d2d2d  .....-----------
+ 0e10 2d2d2d2d 2d002d20 31294164 64202d00  -----.- 1)Add -.
+ 0e20 2d203229 53756274 72616374 202d002d  - 2)Subtract -.-
+ 0e30 2033294d 756c7469 706c7920 2d002d20   3)Multiply -.- 
+ 0e40 34294578 6974202d 002d2d2d 2d2d2d2d  4)Exit -.-------
+ 0e50 2d2d2d2d 2d2d2d2d 2d0a002d 20312941  ---------..- 1)A
+ 0e60 6464202d 0a002d20 32295375 62747261  dd -..- 2)Subtra
+ 0e70 6374202d 0a002d20 33294d75 6c746970  ct -..- 3)Multip
+ 0e80 6c79202d 0a002d20 34294578 6974202d  ly -..- 4)Exit -
+ 0e90 0a00202d 2000203d 2000               .. - . = .
+
+
+00000000000009fa <DisplayMenu()>:
+ 9fa:	55                   	push   %rbp
+ 9fb:	48 89 e5             	mov    %rsp,%rbp
+ 9fe:	48 8d 35 00 04 00 00 	lea    0x400(%rip),%rsi        # e05 <std::piecewise_construct+0x1>
+ a05:	48 8d 3d 14 16 20 00 	lea    0x201614(%rip),%rdi        # 202020 <std::cout@@GLIBCXX_3.4>
+ a0c:	e8 7f fe ff ff       	callq  890 <std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)@plt>  ; Calls function to print string "---------------"
+ a11:	48 8d 35 fe 03 00 00 	lea    0x3fe(%rip),%rsi        # e16 <std::piecewise_construct+0x12>
+ a18:	48 8d 3d 01 16 20 00 	lea    0x201601(%rip),%rdi        # 202020 <std::cout@@GLIBCXX_3.4>
+ a1f:	e8 6c fe ff ff       	callq  890 <std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)@plt>  ; Calls function to print string "- 1)Add -"
+ a24:	48 8d 35 f5 03 00 00 	lea    0x3f5(%rip),%rsi        # e20 <std::piecewise_construct+0x1c>
+ a2b:	48 8d 3d ee 15 20 00 	lea    0x2015ee(%rip),%rdi        # 202020 <std::cout@@GLIBCXX_3.4>
+ a32:	e8 59 fe ff ff       	callq  890 <std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)@plt>  ; Calls function to print string "- 2)Subtract -"
+ a37:	48 8d 35 f1 03 00 00 	lea    0x3f1(%rip),%rsi        # e2f <std::piecewise_construct+0x2b>
+ a3e:	48 8d 3d db 15 20 00 	lea    0x2015db(%rip),%rdi        # 202020 <std::cout@@GLIBCXX_3.4>
+ a45:	e8 46 fe ff ff       	callq  890 <std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)@plt>  ; Calls function to print string "- 3)Multiply -"
+ a4a:	48 8d 35 ed 03 00 00 	lea    0x3ed(%rip),%rsi        # e3e <std::piecewise_construct+0x3a>
+ a51:	48 8d 3d c8 15 20 00 	lea    0x2015c8(%rip),%rdi        # 202020 <std::cout@@GLIBCXX_3.4>
+ a58:	e8 33 fe ff ff       	callq  890 <std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)@plt>  ; Calls function to print string "- 4)Exit -"
+ a5d:	48 8d 35 a1 03 00 00 	lea    0x3a1(%rip),%rsi        # e05 <std::piecewise_construct+0x1>
+ a64:	48 8d 3d b5 15 20 00 	lea    0x2015b5(%rip),%rdi        # 202020 <std::cout@@GLIBCXX_3.4>
+ a6b:	e8 20 fe ff ff       	callq  890 <std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)@plt>  ; Calls function to print string "---------------"
+ a70:	90                   	nop
+ a71:	5d                   	pop    %rbp
+ a72:	c3                   	retq  
+
+
+
+
+
+0000000000000a73 <main>:
+ a73:	55                   	push   %rbp
+ a74:	48 89 e5             	mov    %rsp,%rbp
+ a77:	48 83 ec 20          	sub    $0x20,%rsp
+ a7b:	64 48 8b 04 25 28 00 	mov    %fs:0x28,%rax
+ a82:	00 00 
+ a84:	48 89 45 f8          	mov    %rax,-0x8(%rbp)
+ a88:	31 c0                	xor    %eax,%eax
+ a8a:	c7 45 ec 00 00 00 00 	movl   $0x0,-0x14(%rbp)  ; moves the value 0 into -0x14(%rbp)
+ a91:	8b 45 ec             	mov    -0x14(%rbp),%eax  ; moves -0x14(%rbp) into %eax
+ a94:	83 f8 05             	cmp    $0x5,%eax         ; compares %eax with the value of 5
+ a97:	0f 84 65 02 00 00    	je     d02 <main+0x28f>  ; jumps to d02 if %eax is equal to 5
+ a9d:	48 8d 35 a5 03 00 00 	lea    0x3a5(%rip),%rsi        # e49 <std::piecewise_construct+0x45>
+ aa4:	48 8d 3d 75 15 20 00 	lea    0x201575(%rip),%rdi        # 202020 <std::cout@@GLIBCXX_3.4>
+ aab:	e8 e0 fd ff ff       	callq  890 <std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)@plt>  ; Calls function to print string "---------------"
+ ab0:	48 8d 35 a4 03 00 00 	lea    0x3a4(%rip),%rsi        # e5b <std::piecewise_construct+0x57>
+ ab7:	48 8d 3d 62 15 20 00 	lea    0x201562(%rip),%rdi        # 202020 <std::cout@@GLIBCXX_3.4>
+ abe:	e8 cd fd ff ff       	callq  890 <std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)@plt>  ; Calls function to print string "- 1)Add -"
+ ac3:	48 8d 35 9c 03 00 00 	lea    0x39c(%rip),%rsi        # e66 <std::piecewise_construct+0x62>
+ aca:	48 8d 3d 4f 15 20 00 	lea    0x20154f(%rip),%rdi        # 202020 <std::cout@@GLIBCXX_3.4>
+ ad1:	e8 ba fd ff ff       	callq  890 <std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)@plt>  ; Calls function to print string "- 2)Subtract -"
+ ad6:	48 8d 35 99 03 00 00 	lea    0x399(%rip),%rsi        # e76 <std::piecewise_construct+0x72>
+ add:	48 8d 3d 3c 15 20 00 	lea    0x20153c(%rip),%rdi        # 202020 <std::cout@@GLIBCXX_3.4>
+ ae4:	e8 a7 fd ff ff       	callq  890 <std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)@plt>  ; Calls function to print string "- 3)Multiply -"
+ ae9:	48 8d 35 96 03 00 00 	lea    0x396(%rip),%rsi        # e86 <std::piecewise_construct+0x82>
+ af0:	48 8d 3d 29 15 20 00 	lea    0x201529(%rip),%rdi        # 202020 <std::cout@@GLIBCXX_3.4>
+ af7:	e8 94 fd ff ff       	callq  890 <std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)@plt>  ; Calls function to print string "- 4)Exit -"
+ afc:	48 8d 35 46 03 00 00 	lea    0x346(%rip),%rsi        # e49 <std::piecewise_construct+0x45>
+ b03:	48 8d 3d 16 15 20 00 	lea    0x201516(%rip),%rdi        # 202020 <std::cout@@GLIBCXX_3.4>
+ b0a:	e8 81 fd ff ff       	callq  890 <std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)@plt>  ; Calls function to print string "---------------"
+ b0f:	48 8d 45 ec          	lea    -0x14(%rbp),%rax
+ b13:	48 89 c6             	mov    %rax,%rsi
+ b16:	48 8d 3d 23 16 20 00 	lea    0x201623(%rip),%rdi        # 202140 <std::cin@@GLIBCXX_3.4>
+ b1d:	e8 4e fd ff ff       	callq  870 <std::istream::operator>>(int&)@plt>  ; takes in user input and is expecting an int
+ b22:	8b 45 ec             	mov    -0x14(%rbp),%eax
+ b25:	83 f8 01             	cmp    $0x1,%eax         ; Compares user input with the value 1
+ b28:	0f 85 95 00 00 00    	jne    bc3 <main+0x150>  ; jumps to bc3 if user input does not equal 1
+ b2e:	48 8d 45 f0          	lea    -0x10(%rbp),%rax
+ b32:	48 89 c6             	mov    %rax,%rsi
+ b35:	48 8d 3d 04 16 20 00 	lea    0x201604(%rip),%rdi        # 202140 <std::cin@@GLIBCXX_3.4>
+ b3c:	e8 2f fd ff ff       	callq  870 <std::istream::operator>>(int&)@plt>  ; takes in user input for first number to add
+ b41:	48 89 c2             	mov    %rax,%rdx
+ b44:	48 8d 45 f4          	lea    -0xc(%rbp),%rax
+ b48:	48 89 c6             	mov    %rax,%rsi
+ b4b:	48 89 d7             	mov    %rdx,%rdi
+ b4e:	e8 1d fd ff ff       	callq  870 <std::istream::operator>>(int&)@plt>  ; takes in user input for second number to add
+ b53:	8b 45 f0             	mov    -0x10(%rbp),%eax
+ b56:	89 c6                	mov    %eax,%esi
+ b58:	48 8d 3d c1 14 20 00 	lea    0x2014c1(%rip),%rdi        # 202020 <std::cout@@GLIBCXX_3.4>
+ b5f:	e8 6c fd ff ff       	callq  8d0 <std::ostream::operator<<(int)@plt>  ; prints integer number 1
+ b64:	48 8d 35 27 03 00 00 	lea    0x327(%rip),%rsi        # e92 <std::piecewise_construct+0x8e>
+ b6b:	48 89 c7             	mov    %rax,%rdi
+ b6e:	e8 1d fd ff ff       	callq  890 <std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)@plt>  ; prints " - "
+ b73:	48 89 c2             	mov    %rax,%rdx
+ b76:	8b 45 f4             	mov    -0xc(%rbp),%eax
+ b79:	89 c6                	mov    %eax,%esi
+ b7b:	48 89 d7             	mov    %rdx,%rdi
+ b7e:	e8 4d fd ff ff       	callq  8d0 <std::ostream::operator<<(int)@plt>  ; prints integer number 2
+ b83:	48 8d 35 0c 03 00 00 	lea    0x30c(%rip),%rsi        # e96 <std::piecewise_construct+0x92>
+ b8a:	48 89 c7             	mov    %rax,%rdi
+ b8d:	e8 fe fc ff ff       	callq  890 <std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)@plt>  ; prints " = "
+ b92:	48 89 c1             	mov    %rax,%rcx
+ b95:	8b 55 f0             	mov    -0x10(%rbp),%edx  ; moves user input for second number into %edx
+ b98:	8b 45 f4             	mov    -0xc(%rbp),%eax   ; moves user input for first number into %eax
+ b9b:	29 c2                	sub    %eax,%edx         ; subtracts %eax from %edx
+ b9d:	89 d0                	mov    %edx,%eax         ; moves the result into %eax
+ b9f:	89 c6                	mov    %eax,%esi         ; then moves it into %esi
+ ba1:	48 89 cf             	mov    %rcx,%rdi
+ ba4:	e8 27 fd ff ff       	callq  8d0 <std::ostream::operator<<(int)@plt>  ; prints result
+ ba9:	48 89 c2             	mov    %rax,%rdx
+ bac:	48 8b 05 1d 14 20 00 	mov    0x20141d(%rip),%rax        # 201fd0 <std::basic_ostream<char, std::char_traits<char> >& std::endl<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&)@GLIBCXX_3.4>
+ bb3:	48 89 c6             	mov    %rax,%rsi
+ bb6:	48 89 d7             	mov    %rdx,%rdi
+ bb9:	e8 e2 fc ff ff       	callq  8a0 <std::ostream::operator<<(std::ostream& (*)(std::ostream&))@plt>  ; prints new line
+ bbe:	e9 ce fe ff ff       	jmpq   a91 <main+0x1e>  ; unconditional jump to a91, which is the beginning of the loop
+ bc3:	8b 45 ec             	mov    -0x14(%rbp),%eax ; moves user input into %eax
+ bc6:	83 f8 02             	cmp    $0x2,%eax        ; compares user input with the value of 2
+ bc9:	0f 85 93 00 00 00    	jne    c62 <main+0x1ef> ; jumps to c62 if user input does not equal 2
+ bcf:	48 8d 45 f0          	lea    -0x10(%rbp),%rax
+ bd3:	48 89 c6             	mov    %rax,%rsi
+ bd6:	48 8d 3d 63 15 20 00 	lea    0x201563(%rip),%rdi        # 202140 <std::cin@@GLIBCXX_3.4>
+ bdd:	e8 8e fc ff ff       	callq  870 <std::istream::operator>>(int&)@plt>  ; take in user input for first number to subtract
+ be2:	48 89 c2             	mov    %rax,%rdx
+ be5:	48 8d 45 f4          	lea    -0xc(%rbp),%rax
+ be9:	48 89 c6             	mov    %rax,%rsi
+ bec:	48 89 d7             	mov    %rdx,%rdi
+ bef:	e8 7c fc ff ff       	callq  870 <std::istream::operator>>(int&)@plt>  ; take in user input for second number to subtract
+ bf4:	8b 45 f0             	mov    -0x10(%rbp),%eax  ; moves uesr input into %eax
+ bf7:	89 c6                	mov    %eax,%esi         ; then into %esi
+ bf9:	48 8d 3d 20 14 20 00 	lea    0x201420(%rip),%rdi        # 202020 <std::cout@@GLIBCXX_3.4>
+ c00:	e8 cb fc ff ff       	callq  8d0 <std::ostream::operator<<(int)@plt>  ; prints first number
+ c05:	48 8d 35 86 02 00 00 	lea    0x286(%rip),%rsi        # e92 <std::piecewise_construct+0x8e>
+ c0c:	48 89 c7             	mov    %rax,%rdi
+ c0f:	e8 7c fc ff ff       	callq  890 <std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)@plt>  ; prints " - "
+ c14:	48 89 c2             	mov    %rax,%rdx
+ c17:	8b 45 f4             	mov    -0xc(%rbp),%eax  
+ c1a:	89 c6                	mov    %eax,%esi        
+ c1c:	48 89 d7             	mov    %rdx,%rdi
+ c1f:	e8 ac fc ff ff       	callq  8d0 <std::ostream::operator<<(int)@plt>  ; prints second number
+ c24:	48 8d 35 6b 02 00 00 	lea    0x26b(%rip),%rsi        # e96 <std::piecewise_construct+0x92>
+ c2b:	48 89 c7             	mov    %rax,%rdi
+ c2e:	e8 5d fc ff ff       	callq  890 <std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)@plt>  ; prints " = "
+ c33:	48 89 c1             	mov    %rax,%rcx
+ c36:	8b 55 f0             	mov    -0x10(%rbp),%edx  ; moves first input into %edx
+ c39:	8b 45 f4             	mov    -0xc(%rbp),%eax   ; moves second input into %eax
+ c3c:	01 d0                	add    %edx,%eax         ; adds the two together
+ c3e:	89 c6                	mov    %eax,%esi         ; moves the result into %esi
+ c40:	48 89 cf             	mov    %rcx,%rdi
+ c43:	e8 88 fc ff ff       	callq  8d0 <std::ostream::operator<<(int)@plt>  ; prints the result
+ c48:	48 89 c2             	mov    %rax,%rdx
+ c4b:	48 8b 05 7e 13 20 00 	mov    0x20137e(%rip),%rax        # 201fd0 <std::basic_ostream<char, std::char_traits<char> >& std::endl<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&)@GLIBCXX_3.4>
+ c52:	48 89 c6             	mov    %rax,%rsi
+ c55:	48 89 d7             	mov    %rdx,%rdi
+ c58:	e8 43 fc ff ff       	callq  8a0 <std::ostream::operator<<(std::ostream& (*)(std::ostream&))@plt>  ; prints new line
+ c5d:	e9 2f fe ff ff       	jmpq   a91 <main+0x1e>  ; unconditional jump to a91, which is the beginning of the loop
+ c62:	8b 45 ec             	mov    -0x14(%rbp),%eax ; moves user input into %eax
+ c65:	83 f8 03             	cmp    $0x3,%eax        ; compares user input with the value of 3
+ c68:	0f 85 23 fe ff ff    	jne    a91 <main+0x1e>  ; jumps to a91 if user input does not equal 3
+ c6e:	48 8d 45 f0          	lea    -0x10(%rbp),%rax
+ c72:	48 89 c6             	mov    %rax,%rsi
+ c75:	48 8d 3d c4 14 20 00 	lea    0x2014c4(%rip),%rdi        # 202140 <std::cin@@GLIBCXX_3.4>
+ c7c:	e8 ef fb ff ff       	callq  870 <std::istream::operator>>(int&)@plt>  ; takes in user input for first number to multiply
+ c81:	48 89 c2             	mov    %rax,%rdx
+ c84:	48 8d 45 f4          	lea    -0xc(%rbp),%rax
+ c88:	48 89 c6             	mov    %rax,%rsi
+ c8b:	48 89 d7             	mov    %rdx,%rdi
+ c8e:	e8 dd fb ff ff       	callq  870 <std::istream::operator>>(int&)@plt>  ; takes in user input for second number to multiply
+ c93:	8b 45 f0             	mov    -0x10(%rbp),%eax
+ c96:	89 c6                	mov    %eax,%esi
+ c98:	48 8d 3d 81 13 20 00 	lea    0x201381(%rip),%rdi        # 202020 <std::cout@@GLIBCXX_3.4>
+ c9f:	e8 2c fc ff ff       	callq  8d0 <std::ostream::operator<<(int)@plt>  ; prints first number
+ ca4:	48 8d 35 e7 01 00 00 	lea    0x1e7(%rip),%rsi        # e92 <std::piecewise_construct+0x8e>
+ cab:	48 89 c7             	mov    %rax,%rdi
+ cae:	e8 dd fb ff ff       	callq  890 <std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)@plt>  ; prints " - "
+ cb3:	48 89 c2             	mov    %rax,%rdx
+ cb6:	8b 45 f4             	mov    -0xc(%rbp),%eax
+ cb9:	89 c6                	mov    %eax,%esi
+ cbb:	48 89 d7             	mov    %rdx,%rdi
+ cbe:	e8 0d fc ff ff       	callq  8d0 <std::ostream::operator<<(int)@plt>  ; prints second number
+ cc3:	48 8d 35 cc 01 00 00 	lea    0x1cc(%rip),%rsi        # e96 <std::piecewise_construct+0x92>
+ cca:	48 89 c7             	mov    %rax,%rdi
+ ccd:	e8 be fb ff ff       	callq  890 <std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)@plt>  ; prints " = "
+ cd2:	48 89 c1             	mov    %rax,%rcx
+ cd5:	8b 45 f0             	mov    -0x10(%rbp),%eax  ; moves first number into %eax
+ cd8:	8b 75 f4             	mov    -0xc(%rbp),%esi   ; moves second number into %esi
+ cdb:	99                   	cltd                     ; converts a signed long in %eax into a signed double long into edx:eax
+ cdc:	f7 fe                	idiv   %esi              ; divides the 64-bit value in edx:eax by the second number in %esi
+ cde:	89 c6                	mov    %eax,%esi
+ ce0:	48 89 cf             	mov    %rcx,%rdi
+ ce3:	e8 e8 fb ff ff       	callq  8d0 <std::ostream::operator<<(int)@plt>  ; prints result
+ ce8:	48 89 c2             	mov    %rax,%rdx
+ ceb:	48 8b 05 de 12 20 00 	mov    0x2012de(%rip),%rax        # 201fd0 <std::basic_ostream<char, std::char_traits<char> >& std::endl<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&)@GLIBCXX_3.4>
+ cf2:	48 89 c6             	mov    %rax,%rsi
+ cf5:	48 89 d7             	mov    %rdx,%rdi
+ cf8:	e8 a3 fb ff ff       	callq  8a0 <std::ostream::operator<<(std::ostream& (*)(std::ostream&))@plt>  ; prints new line
+ cfd:	e9 8f fd ff ff       	jmpq   a91 <main+0x1e>  ; unconditional jump to a91
+ d02:	b8 00 00 00 00       	mov    $0x0,%eax
+ d07:	48 8b 4d f8          	mov    -0x8(%rbp),%rcx
+ d0b:	64 48 33 0c 25 28 00 	xor    %fs:0x28,%rcx
+ d12:	00 00 
+ d14:	74 05                	je     d1b <main+0x2a8>
+ d16:	e8 95 fb ff ff       	callq  8b0 <__stack_chk_fail@plt>
+ d1b:	c9                   	leaveq 
+ d1c:	c3                   	retq
